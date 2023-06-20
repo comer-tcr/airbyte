@@ -1,0 +1,20 @@
+data:
+  allowedHosts:
+    hosts:
+      - TODO # Please change to the hostname of the source.
+  registries:
+    oss:
+      enabled: false
+  connectorSubtype: api
+  connectorType: source
+  definitionId: cd783baf-9f2f-49e0-81e0-8522aca7dc12
+  dockerImageTag: 0.1.0
+  dockerRepository: airbyte/source-
+  githubIssueLabel: source-
+  icon: .svg
+  license: MIT
+  name: 
+  releaseDate: TODO
+  releaseStage: alpha
+  supportUrl: https://docs.airbyte.com/integrations/sources/
+metadataSpecVersion: "1.0"

@@ -1,0 +1,20 @@
+data:
+  allowedHosts:
+    hosts:
+      - TODO # Please change to the hostname of the source.
+  registries:
+    oss:
+      enabled: false
+  connectorSubtype: api
+  connectorType: source
+  definitionId: 1776677e-2312-4333-9f7e-07c7b7201c6b
+  dockerImageTag: 0.1.0
+  dockerRepository: airbyte/source-clickup-task-team-api
+  githubIssueLabel: source-clickup-task-team-api
+  icon: clickup-task-team-api.svg
+  license: MIT
+  name: Clickup Task Team Api
+  releaseDate: TODO
+  releaseStage: alpha
+  supportUrl: https://docs.airbyte.com/integrations/sources/clickup-task-team-api
+metadataSpecVersion: "1.0"

@@ -1,0 +1,20 @@
+data:
+  allowedHosts:
+    hosts:
+      - TODO # Please change to the hostname of the source.
+  registries:
+    oss:
+      enabled: false
+  connectorSubtype: api
+  connectorType: source
+  definitionId: ebdd17f7-b7aa-43d3-ad3c-74141eab9638
+  dockerImageTag: 0.1.0
+  dockerRepository: airbyte/source-ahgora-api
+  githubIssueLabel: source-ahgora-api
+  icon: ahgora-api.svg
+  license: MIT
+  name: Ahgora Api
+  releaseDate: TODO
+  releaseStage: alpha
+  supportUrl: https://docs.airbyte.com/integrations/sources/ahgora-api
+metadataSpecVersion: "1.0"

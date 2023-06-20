@@ -37,6 +37,9 @@
     "date_closed": {
       "type": ["null", "string"]
     },
+    "date_done": {
+      "type": ["null", "string"]
+    },
     "creator": {
       "type": ["null", "object"],
       "properties": {

@@ -21,13 +21,13 @@
       "type": ["null", "integer"]
     },
     "item_price": {
-      "type": ["null", "integer"]
+      "type": ["null", "number"]
     },
     "quantity": {
       "type": ["null", "integer"]
     },
     "discount_percentage": {
-      "type": ["null", "integer"]
+      "type": ["null", "number"]
     },
     "duration": {
       "type": ["null", "integer"]
@@ -36,10 +36,10 @@
       "type": ["null", "string"]
     },
     "sum_no_discount": {
-      "type": ["null", "integer"]
+      "type": ["null", "number"]
     },
     "sum": {
-      "type": ["null", "integer"]
+      "type": ["null", "number"]
     },
     "currency": {
       "type": ["null", "string"]
