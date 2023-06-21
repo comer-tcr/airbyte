@@ -68,7 +68,7 @@ class FileBasedSource(AbstractSource, ABC):
                     reason,
                 ) = stream.availability_strategy.check_availability(stream, logger, self)
             except Exception:
-                errors.append(f"Unable to connect to stream {stream} - {''.join(traceback.format_exc())}")
+                errors.append(f"Unable to connect to stream {stream}. \n{''.join(traceback.format_exc())}")
             else:
                 if not stream_is_available:
                     errors.append(reason)
