@@ -65,6 +65,22 @@ def _choose_wider_type(key: str, t1: JsonSchemaSupportedType, t2: JsonSchemaSupp
         raise SchemaInferenceError(FileBasedSourceError.UNRECOGNIZED_TYPE, key=key, detected_types=f"{t1},{t2}")
 
 
+NARROWER_TYPES = {
+    "boolean": (bool,),
+    "integer": (bool, int),
+    "number": (bool, int, float),
+    "string": (bool, int, float, str),
+    "object": (bool, int, float, str),
+}
+
+
+def is_equal_or_narrower_type(value: Any, expected_types: Union[str, List[str]]):
+    if not isinstance(expected_types, list):
+        expected_types = [expected_types]
+
+    return any(isinstance(value, NARROWER_TYPES.get(expected_type, ())) for expected_type in expected_types)
+
+
 def conforms_to_schema(record: Mapping[str, Any], schema: Mapping[str, str]) -> bool:
     """
     Return true iff the record conforms to the supplied schema.
@@ -74,7 +90,27 @@ def conforms_to_schema(record: Mapping[str, Any], schema: Mapping[str, str]) -> 
     - For every column in the record, that column's type is equal to or narrower than the same column's
       type in the schema.
     """
-    ...
+    schema_columns = set(schema.get("properties", {}).keys())
+    record_columns = set(record.keys())
+
+    if not record_columns.issubset(schema_columns):
+        return False
+
+    for column, definition in schema.get("properties", {}).items():
+        expected_types = definition.get("type", [])
+        value = record.get(column)
+
+        if value is not None:
+            if "object" in expected_types if isinstance(expected_types, list) else expected_types == "object":
+                if not isinstance(value, dict):
+                    return False
+            elif "array" in expected_types if isinstance(expected_types, list) else expected_types == "array":
+                if not isinstance(value, list):
+                    return False
+            elif not is_equal_or_narrower_type(value, expected_types):
+                return False
+
+    return True
 
 
 def type_mapping_to_jsonschema(type_mapping: Mapping[str, Any]) -> Mapping[str, str]:

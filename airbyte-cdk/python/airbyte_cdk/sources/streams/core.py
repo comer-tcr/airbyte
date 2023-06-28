@@ -8,7 +8,7 @@ import logging
 import typing
 from abc import ABC, abstractmethod
 from functools import lru_cache
-from typing import Any, Iterable, List, Mapping, MutableMapping, Optional, Tuple, Union
+from typing import Any, Dict, Iterable, List, Mapping, MutableMapping, Optional, Tuple, Union
 
 import airbyte_cdk.sources.utils.casing as casing
 from airbyte_cdk.models import AirbyteMessage, AirbyteStream, SyncMode
@@ -267,3 +267,14 @@ class Stream(ABC):
             return wrapped_keys
         else:
             raise ValueError(f"Element must be either list or str. Got: {type(keys)}")
+
+    @property
+    def catalog_schema(self):
+        if hasattr(self, "_catalog_schema"):
+            return self._catalog_schema
+        return None
+
+    # noinspection PyAttributeOutsideInit
+    @catalog_schema.setter
+    def catalog_schema(self, schema: Dict[str, Any]):
+        self._catalog_schema = schema

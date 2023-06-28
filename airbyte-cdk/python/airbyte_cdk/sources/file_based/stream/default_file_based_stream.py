@@ -5,10 +5,17 @@
 import asyncio
 import itertools
 import logging
+import traceback
 from functools import cache
 from typing import Any, Iterable, List, Mapping, MutableMapping, Optional, Union
 
-from airbyte_cdk.sources.file_based.exceptions import FileBasedSourceError, MissingSchemaError, RecordParseError, SchemaInferenceError
+from airbyte_cdk.models import AirbyteLogMessage, AirbyteMessage, Level, Type
+from airbyte_cdk.sources.file_based.exceptions import (
+    FileBasedSourceError,
+    MissingSchemaError,
+    SchemaInferenceError,
+    StopSyncPerValidationPolicy,
+)
 from airbyte_cdk.sources.file_based.remote_file import RemoteFile
 from airbyte_cdk.sources.file_based.schema_helpers import merge_schemas
 from airbyte_cdk.sources.file_based.stream import AbstractFileBasedStream
@@ -65,17 +72,49 @@ class DefaultFileBasedStream(AbstractFileBasedStream, IncrementalMixin):
         for file in stream_slice["files"]:
             # only serialize the datetime once
             file_datetime_string = file.last_modified.strftime("%Y-%m-%dT%H:%M:%SZ")
+            n_skipped = line_no = 0
+
             try:
                 for record in parser.parse_records(file, self._stream_reader):
+                    line_no += 1
+
                     if not self.record_passes_validation_policy(record):
-                        logging.warning(f"Record did not pass validation policy: {record}")
+                        n_skipped += 1
                         continue
                     record[self.ab_last_mod_col] = file_datetime_string
                     record[self.ab_file_name_col] = file.uri
                     yield stream_data_to_airbyte_message(self.name, record)
                 self._cursor.add_file(file)
+
+            except StopSyncPerValidationPolicy:
+                yield AirbyteMessage(
+                    type=Type.LOG,
+                    log=AirbyteLogMessage(
+                        level=Level.INFO,
+                        message=f"Stopping sync in accordance with the configured validation policy. Records in file did not conform to the schema. stream={self.name} file={file.uri} validation_policy={self.config.validation_policy.name}",
+                    ),
+                )
+                break
+
             except Exception as exc:
-                raise RecordParseError(FileBasedSourceError.ERROR_PARSING_FILE, stream=self.name) from exc
+                yield AirbyteMessage(
+                    type=Type.LOG,
+                    log=AirbyteLogMessage(
+                        level=Level.ERROR,
+                        message=f"{FileBasedSourceError.ERROR_PARSING_RECORD.value} stream={self.name} file={file.uri} line_no={line_no}",
+                        stack_trace="\n".join(traceback.format_exception(etype=type(exc), value=exc, tb=exc.__traceback__)),
+                    ),
+                )
+
+            else:
+                if n_skipped:
+                    yield AirbyteMessage(
+                        type=Type.LOG,
+                        log=AirbyteLogMessage(
+                            level=Level.INFO,
+                            message=f"Records in file did not pass validation policy. stream={self.name} file={file.uri} n_skipped={n_skipped} validation_policy={self.config.validation_policy.name}",
+                        ),
+                    )
 
     @property
     def cursor_field(self) -> Union[str, List[str]]:

@@ -2,7 +2,7 @@
 # Copyright (c) 2023 Airbyte, Inc., all rights reserved.
 #
 
-from airbyte_cdk.sources.file_based.exceptions import FileBasedSourceError, RecordParseError, SchemaInferenceError
+from airbyte_cdk.sources.file_based.exceptions import FileBasedSourceError, SchemaInferenceError
 from unit_tests.sources.file_based.helpers import LowInferenceLimitDiscoveryPolicy
 from unit_tests.sources.file_based.scenarios.scenario_builder import TestScenarioBuilder
 
@@ -16,7 +16,7 @@ single_csv_scenario = (
                     "name": "stream1",
                     "file_type": "csv",
                     "globs": ["*"],
-                    "validation_policy": "emit_record_on_schema_mismatch",
+                    "validation_policy": "emit_record",
                 }
             ]
         }
@@ -83,7 +83,7 @@ multi_csv_scenario = (
                     "name": "stream1",
                     "file_type": "csv",
                     "globs": ["*"],
-                    "validation_policy": "emit_record_on_schema_mismatch",
+                    "validation_policy": "emit_record",
                 }
             ]
         }
@@ -165,7 +165,7 @@ multi_csv_stream_n_file_exceeds_limit_for_inference = (
                     "name": "stream1",
                     "file_type": "csv",
                     "globs": ["*"],
-                    "validation_policy": "emit_record_on_schema_mismatch",
+                    "validation_policy": "emit_record",
                 }
             ]
         }
@@ -236,7 +236,7 @@ multi_csv_stream_n_file_exceeds_limit_for_inference = (
 
 invalid_csv_scenario = (
     TestScenarioBuilder()
-    .set_name("invalid_csv_stream")
+    .set_name("invalid_csv_scenario")
     .set_config(
         {
             "streams": [
@@ -244,7 +244,7 @@ invalid_csv_scenario = (
                     "name": "stream1",
                     "file_type": "csv",
                     "globs": ["*"],
-                    "validation_policy": "emit_record_on_schema_mismatch",
+                    "validation_policy": "emit_record",
                 }
             ]
         }
@@ -253,7 +253,7 @@ invalid_csv_scenario = (
         {
             "a.csv": {
                 "contents": [
-                    (),
+                    ("col1",),
                     ("val11", "val12"),
                     ("val21", "val22"),
                 ],
@@ -290,14 +290,16 @@ invalid_csv_scenario = (
             ]
         }
     )
-    .set_expected_records(
+    .set_expected_records([])
+    .set_expected_discover_error(SchemaInferenceError, FileBasedSourceError.SCHEMA_INFERENCE_ERROR.value)
+    .set_expected_logs(
         [
-            {"col1": "val11", "col2": "val12", "_ab_source_file_last_modified": "2023-06-05T03:54:07Z", "_ab_source_file_url": "a.csv"},
-            {"col1": "val21", "col2": "val22", "_ab_source_file_last_modified": "2023-06-05T03:54:07Z", "_ab_source_file_url": "b.csv"},
+            {
+                "level": "ERROR",
+                "message": f"{FileBasedSourceError.ERROR_PARSING_RECORD.value} stream=stream1 file=a.csv line_no=1",
+            },
         ]
     )
-    .set_expected_discover_error(SchemaInferenceError, FileBasedSourceError.SCHEMA_INFERENCE_ERROR.value)
-    .set_expected_read_error(RecordParseError, FileBasedSourceError.ERROR_PARSING_FILE.value)
 ).build()
 
 csv_single_stream_scenario = (
@@ -310,7 +312,7 @@ csv_single_stream_scenario = (
                     "name": "stream1",
                     "file_type": "csv",
                     "globs": ["*.csv"],
-                    "validation_policy": "emit_record_on_schema_mismatch",
+                    "validation_policy": "emit_record",
                 }
             ]
         }
@@ -384,13 +386,13 @@ csv_multi_stream_scenario = (
                     "name": "stream1",
                     "file_type": "csv",
                     "globs": ["*.csv"],
-                    "validation_policy": "emit_record_on_schema_mismatch",
+                    "validation_policy": "emit_record",
                 },
                 {
                     "name": "stream2",
                     "file_type": "csv",
                     "globs": ["b.csv"],
-                    "validation_policy": "emit_record_on_schema_mismatch",
+                    "validation_policy": "emit_record",
                 }
             ]
         }

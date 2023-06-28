@@ -14,7 +14,7 @@ from airbyte_cdk.sources.file_based.file_based_source import FileBasedSource
 from airbyte_cdk.sources.file_based.file_based_stream_reader import AbstractFileBasedStreamReader
 from airbyte_cdk.sources.file_based.file_types.file_type_parser import FileTypeParser
 from airbyte_cdk.sources.file_based.remote_file import RemoteFile
-from airbyte_cdk.sources.file_based.schema_validation_policies import AbstractSchemaValidationPolicy, DefaultSchemaValidationPolicy
+from airbyte_cdk.sources.file_based.schema_validation_policies import DEFAULT_SCHEMA_VALIDATION_POLICIES, AbstractSchemaValidationPolicy
 from airbyte_cdk.sources.streams.availability_strategy import AvailabilityStrategy
 
 
@@ -25,7 +25,7 @@ class InMemoryFilesSource(FileBasedSource):
             file_type,
             availability_strategy: AvailabilityStrategy,
             discovery_policy: AbstractDiscoveryPolicy,
-            validation_policies: AbstractSchemaValidationPolicy,
+            validation_policies: Dict[str, AbstractSchemaValidationPolicy],
             parsers: Dict[str, FileTypeParser],
             stream_reader: AbstractFileBasedStreamReader,
     ):
@@ -36,7 +36,7 @@ class InMemoryFilesSource(FileBasedSource):
             availability_strategy=availability_strategy,
             discovery_policy=discovery_policy,
             parsers=parsers,
-            validation_policies=validation_policies or DefaultSchemaValidationPolicy,
+            validation_policies=validation_policies or DEFAULT_SCHEMA_VALIDATION_POLICIES,
         )
 
         # Attributes required for test purposes

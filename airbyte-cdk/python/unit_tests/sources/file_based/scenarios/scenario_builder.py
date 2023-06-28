@@ -30,11 +30,12 @@ class TestScenario:
             files: Dict[str, Any],
             file_type: str,
             expected_check_status: Optional[str],
-            expected_catalog: Dict[str, Any],
+            expected_catalog: Optional[Dict[str, Any]],
+            expected_logs: Optional[Dict[str, Any]],
             expected_records: Optional[Dict[str, Any]],
             availability_strategy: Optional[AvailabilityStrategy],
             discovery_policy: Optional[AbstractDiscoveryPolicy],
-            validation_policies: Optional[AbstractSchemaValidationPolicy],
+            validation_policies: Optional[Dict[str, AbstractSchemaValidationPolicy]],
             parsers: Optional[Dict[str, FileTypeParser]],
             stream_reader: Optional[AbstractFileBasedStreamReader],
             expected_check_error: Tuple[Optional[Exception], Optional[str]],
@@ -46,6 +47,7 @@ class TestScenario:
         self.config = config
         self.expected_check_status = expected_check_status
         self.expected_catalog = expected_catalog
+        self.expected_logs = expected_logs
         self.expected_records = expected_records
         self.expected_check_error = expected_check_error
         self.expected_discover_error = expected_discover_error
@@ -98,6 +100,7 @@ class TestScenarioBuilder:
         self._file_type = None
         self._expected_check_status = None
         self._expected_catalog = {}
+        self._expected_logs = {}
         self._expected_records = {}
         self._availability_strategy = None
         self._discovery_policy = DefaultDiscoveryPolicy()
@@ -131,6 +134,10 @@ class TestScenarioBuilder:
 
     def set_expected_catalog(self, expected_catalog: Dict[str, Any]):
         self._expected_catalog = expected_catalog
+        return self
+
+    def set_expected_logs(self, expected_logs: Dict[str, Any]):
+        self._expected_logs = expected_logs
         return self
 
     def set_expected_records(self, expected_records: Dict[str, Any]):
@@ -184,6 +191,7 @@ class TestScenarioBuilder:
             self._file_type,
             self._expected_check_status,
             self._expected_catalog,
+            self._expected_logs,
             self._expected_records,
             self._availability_strategy,
             self._discovery_policy,
