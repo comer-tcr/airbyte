@@ -445,18 +445,16 @@ public class PostgresSource extends AbstractJdbcSource<PostgresType> implements 
                                                                                 firstRecordWaitTime, queueSize);
       final PostgresCdcStateHandler postgresCdcStateHandler = new PostgresCdcStateHandler(stateManager);
       final List<ConfiguredAirbyteStream> streamsToSnapshot = identifyStreamsToSnapshot(catalog, stateManager);
-      final Supplier<AutoCloseableIterator<AirbyteMessage>> incrementalIteratorSupplier = () -> handler.getIncrementalIterators(catalog,
-                                                                                                                                new PostgresCdcSavedInfoFetcher(
-                                                                                                                                    savedOffsetAfterReplicationSlotLSN
-                                                                                                                                    ? stateManager.getCdcStateManager()
-                                                                                                                                        .getCdcState()
-                                                                                                                                    : null),
-                                                                                                                                postgresCdcStateHandler,
-                                                                                                                                new PostgresCdcConnectorMetadataInjector(),
-                                                                                                                                PostgresCdcProperties.getDebeziumDefaultProperties(
-                                                                                                                                    database),
-                                                                                                                                emittedAt,
-                                                                                                                                false);
+      final Supplier<AutoCloseableIterator<AirbyteMessage>> incrementalIteratorSupplier =
+          () -> handler.getIncrementalIterators(catalog,
+                                                new PostgresCdcSavedInfoFetcher(
+                                                    savedOffsetAfterReplicationSlotLSN ? stateManager.getCdcStateManager().getCdcState()
+                                                                                       : null),
+                                                postgresCdcStateHandler,
+                                                new PostgresCdcConnectorMetadataInjector(),
+                                                PostgresCdcProperties.getDebeziumDefaultProperties(database),
+                                                emittedAt,
+                                                false);
       if (!savedOffsetAfterReplicationSlotLSN || streamsToSnapshot.isEmpty()) {
         return Collections.singletonList(incrementalIteratorSupplier.get());
       }
@@ -528,31 +526,34 @@ public class PostgresSource extends AbstractJdbcSource<PostgresType> implements 
                           .stream()
                           .map(stream -> stream.getStream().getName())
                           .collect(Collectors.joining(", ")));
-          final Map<io.airbyte.protocol.models.AirbyteStreamNameNamespacePair, StandardStatus> standardStatusMap =
-              getStandardSyncStatusForStreams(database, finalListOfStreamsToBeSyncedViaCtid, stateManager);
 
-          final PostgresCtidHandler standardCtidHandler =
-              new PostgresCtidHandler(sourceConfig,
-                                      database,
-                                      new CtidPostgresSourceOperations(),
-                                      getQuoteString(),
-                                      fileNodes,
-                                      ctidStateManager,
-                                      namespacePair -> Jsons.jsonNode(standardStatusMap.get(namespacePair)),
-                                      (namespacePair, jsonState) -> {
-                                        final AirbyteStreamState airbyteStreamState =
-                                            new AirbyteStreamState()
-                                                .withStreamDescriptor(
-                                                    new StreamDescriptor()
-                                                        .withName(namespacePair.getName())
-                                                        .withNamespace(namespacePair.getNamespace()))
-                                                .withStreamState(Jsons.jsonNode(Jsons.object(jsonState, StandardStatus.class)));
+        }
 
-                                        // Set state
-                                        return new AirbyteStateMessage()
-                                            .withType(AirbyteStateType.STREAM)
-                                            .withStream(airbyteStreamState);
-                                      });
+        final Map<io.airbyte.protocol.models.AirbyteStreamNameNamespacePair, StandardStatus> standardStatusMap =
+            getStandardSyncStatusForStreams(database, finalListOfStreamsToBeSyncedViaCtid, stateManager);
+
+        final PostgresCtidHandler standardCtidHandler =
+            new PostgresCtidHandler(sourceConfig,
+                                    database,
+                                    new CtidPostgresSourceOperations(),
+                                    getQuoteString(),
+                                    fileNodes,
+                                    ctidStateManager,
+                                    namespacePair -> Jsons.jsonNode(standardStatusMap.get(namespacePair)),
+                                    (namespacePair, jsonState) -> {
+                                      final AirbyteStreamState airbyteStreamState =
+                                          new AirbyteStreamState()
+                                              .withStreamDescriptor(
+                                                  new StreamDescriptor()
+                                                      .withName(namespacePair.getName())
+                                                      .withNamespace(namespacePair.getNamespace()))
+                                              .withStreamState(Jsons.jsonNode(standardStatusMap.get(namespacePair)));
+
+                                      // Set state
+                                      return new AirbyteStateMessage()
+                                          .withType(AirbyteStateType.STREAM)
+                                          .withStream(airbyteStreamState);
+                                    });
 
           ctidIterators.addAll(standardCtidHandler.getIncrementalIterators(new ConfiguredAirbyteCatalog().withStreams(finalListOfStreamsToBeSyncedViaCtid),
                                                                            tableNameToTable,
@@ -561,9 +562,6 @@ public class PostgresSource extends AbstractJdbcSource<PostgresType> implements 
                                                                  new ConfiguredAirbyteCatalog().withStreams(
                                                                      streamsCategorised.standardStreams().streamsForStandardSync()), tableNameToTable,
                                                                  stateManager, emittedAt));
-        } else {
-          LOGGER.info("No Streams will be synced via standard method.");
-        }
 
 
         return Stream
