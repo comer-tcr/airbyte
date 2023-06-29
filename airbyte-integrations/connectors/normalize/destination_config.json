@@ -1,0 +1,1 @@
+{"ssl":false,"host":"host.docker.internal","port":4683,"schema":"public","database":"postgres","password":"Spotlar2022!","ssl_mode":{"mode":"disable"},"username":"airbyte_user","tunnel_method":{"tunnel_method":"NO_TUNNEL"}}

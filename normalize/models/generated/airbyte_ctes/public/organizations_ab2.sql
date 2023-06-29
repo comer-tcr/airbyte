@@ -1,0 +1,62 @@
+{{ config(
+    indexes = [{'columns':['_airbyte_emitted_at'],'type':'btree'}],
+    unique_key = '_airbyte_ab_id',
+    schema = "_airbyte_public",
+    tags = [ "top-level-intermediate" ]
+) }}
+-- SQL model to cast each column to its adequate SQL type converted from the JSON schema type
+-- depends_on: {{ ref('organizations_ab1') }}
+select
+    cast(address_route as {{ dbt_utils.type_string() }}) as address_route,
+    cast(related_closed_deals_count as {{ dbt_utils.type_float() }}) as related_closed_deals_count,
+    cast(email_messages_count as {{ dbt_utils.type_float() }}) as email_messages_count,
+    cast(cc_email as {{ dbt_utils.type_string() }}) as cc_email,
+    cast(owner_id as {{ type_json() }}) as owner_id,
+    cast(open_deals_count as {{ dbt_utils.type_float() }}) as open_deals_count,
+    {{ cast_to_boolean('active_flag') }} as active_flag,
+    cast(picture_id as {{ type_json() }}) as picture_id,
+    cast(people_count as {{ dbt_utils.type_float() }}) as people_count,
+    cast(last_activity_id as {{ dbt_utils.type_float() }}) as last_activity_id,
+    cast(next_activity_date as {{ dbt_utils.type_string() }}) as next_activity_date,
+    cast({{ empty_string_to_null('update_time') }} as {{ type_timestamp_without_timezone() }}) as update_time,
+    cast(activities_count as {{ dbt_utils.type_float() }}) as activities_count,
+    cast({{ adapter.quote('id') }} as {{ dbt_utils.type_float() }}) as {{ adapter.quote('id') }},
+    cast(address_admin_area_level_2 as {{ dbt_utils.type_string() }}) as address_admin_area_level_2,
+    cast(won_deals_count as {{ dbt_utils.type_float() }}) as won_deals_count,
+    cast(address_admin_area_level_1 as {{ dbt_utils.type_string() }}) as address_admin_area_level_1,
+    cast(address_street_number as {{ dbt_utils.type_string() }}) as address_street_number,
+    cast(address as {{ dbt_utils.type_string() }}) as address,
+    cast(owner_name as {{ dbt_utils.type_string() }}) as owner_name,
+    cast(files_count as {{ dbt_utils.type_float() }}) as files_count,
+    cast(company_id as {{ dbt_utils.type_float() }}) as company_id,
+    cast(address_formatted_address as {{ dbt_utils.type_string() }}) as address_formatted_address,
+    cast(address_postal_code as {{ dbt_utils.type_string() }}) as address_postal_code,
+    cast(related_won_deals_count as {{ dbt_utils.type_float() }}) as related_won_deals_count,
+    cast(address_country as {{ dbt_utils.type_string() }}) as address_country,
+    cast(first_char as {{ dbt_utils.type_string() }}) as first_char,
+    cast(undone_activities_count as {{ dbt_utils.type_float() }}) as undone_activities_count,
+    cast(closed_deals_count as {{ dbt_utils.type_float() }}) as closed_deals_count,
+    cast(address_subpremise as {{ dbt_utils.type_string() }}) as address_subpremise,
+    cast(last_activity_date as {{ dbt_utils.type_string() }}) as last_activity_date,
+    cast({{ adapter.quote('label') }} as {{ dbt_utils.type_float() }}) as {{ adapter.quote('label') }},
+    cast(next_activity_id as {{ dbt_utils.type_float() }}) as next_activity_id,
+    cast(related_lost_deals_count as {{ dbt_utils.type_float() }}) as related_lost_deals_count,
+    cast(related_open_deals_count as {{ dbt_utils.type_float() }}) as related_open_deals_count,
+    cast(country_code as {{ dbt_utils.type_string() }}) as country_code,
+    cast(visible_to as {{ dbt_utils.type_string() }}) as visible_to,
+    cast(notes_count as {{ dbt_utils.type_float() }}) as notes_count,
+    cast(followers_count as {{ dbt_utils.type_float() }}) as followers_count,
+    cast({{ adapter.quote('name') }} as {{ dbt_utils.type_string() }}) as {{ adapter.quote('name') }},
+    cast(address_locality as {{ dbt_utils.type_string() }}) as address_locality,
+    cast(address_sublocality as {{ dbt_utils.type_string() }}) as address_sublocality,
+    cast(lost_deals_count as {{ dbt_utils.type_float() }}) as lost_deals_count,
+    cast(next_activity_time as {{ dbt_utils.type_string() }}) as next_activity_time,
+    cast(add_time as {{ dbt_utils.type_string() }}) as add_time,
+    cast(done_activities_count as {{ dbt_utils.type_float() }}) as done_activities_count,
+    _airbyte_ab_id,
+    _airbyte_emitted_at,
+    {{ current_timestamp() }} as _airbyte_normalized_at
+from {{ ref('organizations_ab1') }}
+-- organizations
+where 1 = 1
+

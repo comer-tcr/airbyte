@@ -5,7 +5,7 @@
     "id": {
       "type": ["null", "integer"]
     },
-    "creator_user_id": {
+    "remote_id": {
       "type": ["null", "integer"]
     },
     "user_id": {

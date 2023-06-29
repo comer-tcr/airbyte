@@ -28,17 +28,17 @@
     "last_updated_by_user_id": {
       "type": ["null", "integer"]
     },
-    "active_flag": {
-      "type": ["null", "boolean"]
+    "mirror_remote_id": {
+      "type": ["null", "integer"]
     },
     "edit_flag": {
       "type": ["null", "boolean"]
     },
-    "index_visible_flag": {
-      "type": ["null", "boolean"]
+    "deal_remote_id": {
+      "type": ["null", "string"]
     },
-    "details_visible_flag": {
-      "type": ["null", "boolean"]
+    "deal_custom_field_key": {
+      "type": ["null", "string"]
     },
     "add_visible_flag": {
       "type": ["null", "boolean"]

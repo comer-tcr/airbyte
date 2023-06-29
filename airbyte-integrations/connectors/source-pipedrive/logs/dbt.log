@@ -1,0 +1,266 @@
+
+
+============================== 10:28:49.174527 | f76ed35e-fc99-4f8e-8bd2-77c47b53f222 ==============================
+[0m10:28:49.174527 [info ] [MainThread]: Running with dbt=1.5.0
+[0m10:28:49.181164 [debug] [MainThread]: running dbt with arguments {'printer_width': '120', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/home/comer/airbyte/airbyte-integrations/connectors/source-pipedrive/normalize', 'debug': 'False', 'fail_fast': 'False', 'log_path': '/home/comer/airbyte/airbyte-integrations/connectors/source-pipedrive/normalize/../logs', 'version_check': 'True', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'target_path': 'None', 'send_anonymous_usage_stats': 'False'}
+[0m10:28:49.376223 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `log-path` config in `dbt_project.yml` has been deprecated, and will no longer be supported in a future version of
+dbt-core. If you wish to write dbt logs to a custom directory, please use the --log-path CLI flag or DBT_LOG_PATH env
+var instead.
+[0m10:28:49.377104 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `target-path` config in `dbt_project.yml` has been deprecated, and will no longer be supported in a future version
+of dbt-core. If you wish to write dbt artifacts to a custom directory, please use the --target-path CLI flag or
+DBT_TARGET_PATH env var instead.
+[0m10:28:49.480643 [error] [MainThread]: Encountered an error:
+Compilation Error
+  dbt found 1 package(s) specified in packages.yml, but only 0 package(s) installed in /dbt. Run "dbt deps" to install package dependencies.
+[0m10:28:49.483832 [debug] [MainThread]: Command `dbt run` failed at 10:28:49.483406 after 0.33 seconds
+[0m10:28:49.484531 [debug] [MainThread]: Flushing usage events
+
+
+============================== 10:29:15.413785 | a9bf8238-32bd-4681-a21d-55e8837b8e1d ==============================
+[0m10:29:15.413785 [info ] [MainThread]: Running with dbt=1.5.0
+[0m10:29:15.416753 [debug] [MainThread]: running dbt with arguments {'printer_width': '120', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/home/comer/airbyte/airbyte-integrations/connectors/source-pipedrive/normalize', 'fail_fast': 'False', 'warn_error': 'None', 'log_path': '/home/comer/airbyte/airbyte-integrations/connectors/source-pipedrive/normalize/../logs', 'debug': 'False', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'target_path': 'None', 'send_anonymous_usage_stats': 'False'}
+[0m10:29:15.450238 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `log-path` config in `dbt_project.yml` has been deprecated, and will no longer be supported in a future version of
+dbt-core. If you wish to write dbt logs to a custom directory, please use the --log-path CLI flag or DBT_LOG_PATH env
+var instead.
+[0m10:29:15.455277 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `target-path` config in `dbt_project.yml` has been deprecated, and will no longer be supported in a future version
+of dbt-core. If you wish to write dbt artifacts to a custom directory, please use the --target-path CLI flag or
+DBT_TARGET_PATH env var instead.
+[0m10:29:15.509146 [error] [MainThread]: Encountered an error:
+[Errno 13] Permission denied: '/dbt'
+[0m10:29:15.518254 [error] [MainThread]: Traceback (most recent call last):
+  File "/home/comer/.local/lib/python3.10/site-packages/dbt/cli/requires.py", line 86, in wrapper
+    result, success = func(*args, **kwargs)
+  File "/home/comer/.local/lib/python3.10/site-packages/dbt/cli/requires.py", line 71, in wrapper
+    return func(*args, **kwargs)
+  File "/home/comer/.local/lib/python3.10/site-packages/dbt/cli/requires.py", line 125, in wrapper
+    return func(*args, **kwargs)
+  File "/home/comer/.local/lib/python3.10/site-packages/dbt/cli/requires.py", line 168, in wrapper
+    return func(*args, **kwargs)
+  File "/home/comer/.local/lib/python3.10/site-packages/dbt/cli/main.py", line 437, in deps
+    results = task.run()
+  File "/home/comer/.local/lib/python3.10/site-packages/dbt/task/deps.py", line 57, in run
+    system.make_directory(self.project.packages_install_path)
+  File "/usr/lib/python3.10/functools.py", line 889, in wrapper
+    return dispatch(args[0].__class__)(*args, **kw)
+  File "/home/comer/.local/lib/python3.10/site-packages/dbt/clients/system.py", line 128, in _
+    raise e
+  File "/home/comer/.local/lib/python3.10/site-packages/dbt/clients/system.py", line 122, in _
+    os.makedirs(path)
+  File "/usr/lib/python3.10/os.py", line 225, in makedirs
+    mkdir(name, mode)
+PermissionError: [Errno 13] Permission denied: '/dbt'
+
+[0m10:29:15.520960 [debug] [MainThread]: Command `dbt deps` failed at 10:29:15.520590 after 0.12 seconds
+[0m10:29:15.521542 [debug] [MainThread]: Flushing usage events
+
+
+============================== 10:29:26.464089 | f4fc7623-5b89-44f6-8d49-0838a98b39f2 ==============================
+[0m10:29:26.464089 [info ] [MainThread]: Running with dbt=1.5.0
+[0m10:29:26.467288 [debug] [MainThread]: running dbt with arguments {'printer_width': '120', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'profiles_dir': '/home/comer/airbyte/airbyte-integrations/connectors/source-pipedrive/normalize', 'log_path': '/home/comer/airbyte/airbyte-integrations/connectors/source-pipedrive/normalize/../logs', 'version_check': 'True', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'static_parser': 'True', 'log_format': 'default', 'target_path': 'None', 'send_anonymous_usage_stats': 'False'}
+[0m10:29:26.538389 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `log-path` config in `dbt_project.yml` has been deprecated, and will no longer be supported in a future version of
+dbt-core. If you wish to write dbt logs to a custom directory, please use the --log-path CLI flag or DBT_LOG_PATH env
+var instead.
+[0m10:29:26.539279 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `target-path` config in `dbt_project.yml` has been deprecated, and will no longer be supported in a future version
+of dbt-core. If you wish to write dbt artifacts to a custom directory, please use the --target-path CLI flag or
+DBT_TARGET_PATH env var instead.
+[0m10:29:26.605866 [error] [MainThread]: Encountered an error:
+Compilation Error
+  dbt found 1 package(s) specified in packages.yml, but only 0 package(s) installed in /dbt. Run "dbt deps" to install package dependencies.
+[0m10:29:26.606966 [debug] [MainThread]: Command `dbt run` failed at 10:29:26.606770 after 0.16 seconds
+[0m10:29:26.607437 [debug] [MainThread]: Flushing usage events
+
+
+============================== 10:33:15.793298 | c1699dcd-f283-4e7d-b72e-565e3f6f0ae3 ==============================
+[0m10:33:15.793298 [info ] [MainThread]: Running with dbt=1.5.0
+[0m10:33:15.796076 [debug] [MainThread]: running dbt with arguments {'printer_width': '120', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'fail_fast': 'False', 'log_path': '/home/comer/airbyte/airbyte-integrations/connectors/source-pipedrive/normalize/../logs', 'profiles_dir': '/home/comer/airbyte/airbyte-integrations/connectors/source-pipedrive/normalize', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'static_parser': 'True', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'send_anonymous_usage_stats': 'False'}
+[0m10:33:15.864883 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `log-path` config in `dbt_project.yml` has been deprecated, and will no longer be supported in a future version of
+dbt-core. If you wish to write dbt logs to a custom directory, please use the --log-path CLI flag or DBT_LOG_PATH env
+var instead.
+[0m10:33:15.866104 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `target-path` config in `dbt_project.yml` has been deprecated, and will no longer be supported in a future version
+of dbt-core. If you wish to write dbt artifacts to a custom directory, please use the --target-path CLI flag or
+DBT_TARGET_PATH env var instead.
+[0m10:33:15.928293 [error] [MainThread]: Encountered an error:
+Compilation Error
+  dbt found 1 package(s) specified in packages.yml, but only 0 package(s) installed in /dbt. Run "dbt deps" to install package dependencies.
+[0m10:33:15.929668 [debug] [MainThread]: Command `dbt run` failed at 10:33:15.929432 after 0.15 seconds
+[0m10:33:15.930272 [debug] [MainThread]: Flushing usage events
+[0m12:28:02.903307 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fb2a1b289d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fb2a0516c80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fb2a0516b60>]}
+
+
+============================== 12:28:02.911706 | 2416454d-778a-4b9d-aa50-f038ea16bf4c ==============================
+[0m12:28:02.911706 [info ] [MainThread]: Running with dbt=1.5.0
+[0m12:28:02.913165 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'debug': 'False', 'log_path': 'logs', 'version_check': 'True', 'profiles_dir': '/home/comer/.dbt', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'static_parser': 'True', 'log_format': 'default', 'target_path': 'None', 'send_anonymous_usage_stats': 'True'}
+[0m12:28:02.914209 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /home/comer/airbyte/airbyte-integrations/connectors/source-pipedrive/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m12:28:02.916196 [debug] [MainThread]: Command `dbt run` failed at 12:28:02.915170 after 0.04 seconds
+[0m12:28:02.919825 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fb2a1b289d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fb2a0516bc0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fb2a0516cb0>]}
+[0m12:28:02.921017 [debug] [MainThread]: Flushing usage events
+[0m12:32:08.822109 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f76883309d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f7686f129e0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f7686f12890>]}
+
+
+============================== 12:32:08.827690 | 18211822-cea1-46d4-b198-d2c7cdc6550e ==============================
+[0m12:32:08.827690 [info ] [MainThread]: Running with dbt=1.5.0
+[0m12:32:08.828705 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'fail_fast': 'False', 'log_path': 'logs', 'profiles_dir': '/home/comer/.dbt', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'log_format': 'default', 'static_parser': 'True', 'target_path': 'None', 'send_anonymous_usage_stats': 'True'}
+[0m12:32:08.830265 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /home/comer/airbyte/airbyte-integrations/connectors/source-pipedrive/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m12:32:08.834501 [debug] [MainThread]: Command `dbt deps` failed at 12:32:08.834094 after 0.04 seconds
+[0m12:32:08.835561 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f76883309d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f7686f12c80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f7686f12d10>]}
+[0m12:32:08.836624 [debug] [MainThread]: Flushing usage events
+
+
+============================== 12:35:21.605577 | 14346fb9-f007-4818-897c-d980c0b63c53 ==============================
+[0m12:35:21.605577 [info ] [MainThread]: Running with dbt=1.5.0
+[0m12:35:21.611042 [debug] [MainThread]: running dbt with arguments {'printer_width': '120', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'version_check': 'True', 'log_path': '/home/comer/airbyte/airbyte-integrations/connectors/source-pipedrive/normalize/../logs', 'profiles_dir': '/home/comer/airbyte/airbyte-integrations/connectors/source-pipedrive/normalize', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'target_path': 'None', 'send_anonymous_usage_stats': 'False'}
+[0m12:35:21.778691 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `log-path` config in `dbt_project.yml` has been deprecated, and will no longer be supported in a future version of
+dbt-core. If you wish to write dbt logs to a custom directory, please use the --log-path CLI flag or DBT_LOG_PATH env
+var instead.
+[0m12:35:21.779938 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `target-path` config in `dbt_project.yml` has been deprecated, and will no longer be supported in a future version
+of dbt-core. If you wish to write dbt artifacts to a custom directory, please use the --target-path CLI flag or
+DBT_TARGET_PATH env var instead.
+[0m12:35:21.865543 [error] [MainThread]: Encountered an error:
+Compilation Error
+  dbt found 1 package(s) specified in packages.yml, but only 0 package(s) installed in /dbt. Run "dbt deps" to install package dependencies.
+[0m12:35:21.866969 [debug] [MainThread]: Command `dbt run` failed at 12:35:21.866720 after 0.29 seconds
+[0m12:35:21.867633 [debug] [MainThread]: Flushing usage events
+
+
+============================== 12:35:43.889661 | 99668dc1-b55f-4551-bc7d-04387894aebe ==============================
+[0m12:35:43.889661 [info ] [MainThread]: Running with dbt=1.5.0
+[0m12:35:43.895867 [debug] [MainThread]: running dbt with arguments {'printer_width': '120', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'fail_fast': 'False', 'log_path': '/home/comer/airbyte/airbyte-integrations/connectors/source-pipedrive/normalize/../logs', 'profiles_dir': '/home/comer/airbyte/airbyte-integrations/connectors/source-pipedrive/normalize', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'log_format': 'default', 'static_parser': 'True', 'target_path': 'None', 'send_anonymous_usage_stats': 'False'}
+[0m12:35:43.938236 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `log-path` config in `dbt_project.yml` has been deprecated, and will no longer be supported in a future version of
+dbt-core. If you wish to write dbt logs to a custom directory, please use the --log-path CLI flag or DBT_LOG_PATH env
+var instead.
+[0m12:35:43.940489 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `target-path` config in `dbt_project.yml` has been deprecated, and will no longer be supported in a future version
+of dbt-core. If you wish to write dbt artifacts to a custom directory, please use the --target-path CLI flag or
+DBT_TARGET_PATH env var instead.
+[0m12:35:43.991034 [error] [MainThread]: Encountered an error:
+[Errno 13] Permission denied: '/dbt'
+[0m12:35:44.004943 [error] [MainThread]: Traceback (most recent call last):
+  File "/home/comer/.local/lib/python3.10/site-packages/dbt/cli/requires.py", line 86, in wrapper
+    result, success = func(*args, **kwargs)
+  File "/home/comer/.local/lib/python3.10/site-packages/dbt/cli/requires.py", line 71, in wrapper
+    return func(*args, **kwargs)
+  File "/home/comer/.local/lib/python3.10/site-packages/dbt/cli/requires.py", line 125, in wrapper
+    return func(*args, **kwargs)
+  File "/home/comer/.local/lib/python3.10/site-packages/dbt/cli/requires.py", line 168, in wrapper
+    return func(*args, **kwargs)
+  File "/home/comer/.local/lib/python3.10/site-packages/dbt/cli/main.py", line 437, in deps
+    results = task.run()
+  File "/home/comer/.local/lib/python3.10/site-packages/dbt/task/deps.py", line 57, in run
+    system.make_directory(self.project.packages_install_path)
+  File "/usr/lib/python3.10/functools.py", line 889, in wrapper
+    return dispatch(args[0].__class__)(*args, **kw)
+  File "/home/comer/.local/lib/python3.10/site-packages/dbt/clients/system.py", line 128, in _
+    raise e
+  File "/home/comer/.local/lib/python3.10/site-packages/dbt/clients/system.py", line 122, in _
+    os.makedirs(path)
+  File "/usr/lib/python3.10/os.py", line 225, in makedirs
+    mkdir(name, mode)
+PermissionError: [Errno 13] Permission denied: '/dbt'
+
+[0m12:35:44.006407 [debug] [MainThread]: Command `dbt deps` failed at 12:35:44.006092 after 0.17 seconds
+[0m12:35:44.007341 [debug] [MainThread]: Flushing usage events
+[0m13:21:14.180860 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd02ba3c9d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd02a61e9b0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd02a61e8f0>]}
+
+
+============================== 13:21:14.184867 | 13974ce6-5adb-4ae8-9122-aeae7abe4172 ==============================
+[0m13:21:14.184867 [info ] [MainThread]: Running with dbt=1.5.0
+[0m13:21:14.185951 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'debug': 'False', 'log_path': 'logs', 'profiles_dir': '/home/comer/.dbt', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'log_format': 'default', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'target_path': 'None', 'send_anonymous_usage_stats': 'True'}
+[0m13:21:14.186993 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /home/comer/airbyte/airbyte-integrations/connectors/source-pipedrive/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m13:21:14.193327 [debug] [MainThread]: Command `dbt deps` failed at 13:21:14.192219 after 0.03 seconds
+[0m13:21:14.194344 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd02ba3c9d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd02a61ec50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd02a61ece0>]}
+[0m13:21:14.195084 [debug] [MainThread]: Flushing usage events
+[0m13:23:17.159623 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f93a90709d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f93a7c52a40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f93a7c529b0>]}
+
+
+============================== 13:23:17.162444 | 8c322f79-1309-4de7-9853-589d0f6b922d ==============================
+[0m13:23:17.162444 [info ] [MainThread]: Running with dbt=1.5.0
+[0m13:23:17.163283 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/home/comer/.dbt', 'fail_fast': 'False', 'version_check': 'True', 'log_path': 'logs', 'debug': 'False', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'log_format': 'default', 'static_parser': 'True', 'target_path': 'None', 'send_anonymous_usage_stats': 'True'}
+[0m13:23:17.164028 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /home/comer/airbyte/airbyte-integrations/connectors/source-pipedrive/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m13:23:17.164813 [debug] [MainThread]: Command `dbt deps` failed at 13:23:17.164629 after 0.01 seconds
+[0m13:23:17.166676 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f93a90709d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f93a7c52ce0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f93a7c52d70>]}
+[0m13:23:17.167624 [debug] [MainThread]: Flushing usage events
+
+
+============================== 13:29:52.283672 | 91603466-111c-4ff2-a61f-4146019e1314 ==============================
+[0m13:29:52.283672 [info ] [MainThread]: Running with dbt=1.5.0
+[0m13:29:52.286667 [debug] [MainThread]: running dbt with arguments {'printer_width': '120', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/home/comer/airbyte/airbyte-integrations/connectors/source-pipedrive/normalize', 'version_check': 'True', 'fail_fast': 'False', 'log_path': '/home/comer/airbyte/airbyte-integrations/connectors/source-pipedrive/normalize/../logs', 'debug': 'False', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'introspect': 'True', 'log_format': 'default', 'target_path': 'None', 'send_anonymous_usage_stats': 'False'}
+[0m13:29:52.394808 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `log-path` config in `dbt_project.yml` has been deprecated, and will no longer be supported in a future version of
+dbt-core. If you wish to write dbt logs to a custom directory, please use the --log-path CLI flag or DBT_LOG_PATH env
+var instead.
+[0m13:29:52.395895 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `target-path` config in `dbt_project.yml` has been deprecated, and will no longer be supported in a future version
+of dbt-core. If you wish to write dbt artifacts to a custom directory, please use the --target-path CLI flag or
+DBT_TARGET_PATH env var instead.
+[0m13:29:52.461631 [error] [MainThread]: Encountered an error:
+Compilation Error
+  dbt found 1 package(s) specified in packages.yml, but only 0 package(s) installed in /dbt. Run "dbt deps" to install package dependencies.
+[0m13:29:52.462553 [debug] [MainThread]: Command `dbt run` failed at 13:29:52.462321 after 0.19 seconds
+[0m13:29:52.463048 [debug] [MainThread]: Flushing usage events
+
+
+============================== 13:33:48.573929 | 6c430bcd-be75-479c-8af1-53d0b3b82c16 ==============================
+[0m13:33:48.573929 [info ] [MainThread]: Running with dbt=1.5.0
+[0m13:33:48.576769 [debug] [MainThread]: running dbt with arguments {'printer_width': '120', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'version_check': 'True', 'log_path': '/home/comer/airbyte/airbyte-integrations/connectors/source-pipedrive/normalize/../logs', 'profiles_dir': '/home/comer/airbyte/airbyte-integrations/connectors/source-pipedrive/normalize', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'log_format': 'default', 'introspect': 'True', 'target_path': 'None', 'send_anonymous_usage_stats': 'False'}
+[0m13:33:48.602374 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `log-path` config in `dbt_project.yml` has been deprecated, and will no longer be supported in a future version of
+dbt-core. If you wish to write dbt logs to a custom directory, please use the --log-path CLI flag or DBT_LOG_PATH env
+var instead.
+[0m13:33:48.603207 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `target-path` config in `dbt_project.yml` has been deprecated, and will no longer be supported in a future version
+of dbt-core. If you wish to write dbt artifacts to a custom directory, please use the --target-path CLI flag or
+DBT_TARGET_PATH env var instead.
+[0m13:33:48.636640 [error] [MainThread]: Encountered an error:
+[Errno 13] Permission denied: '/dbt'
+[0m13:33:48.649855 [error] [MainThread]: Traceback (most recent call last):
+  File "/home/comer/.local/lib/python3.10/site-packages/dbt/cli/requires.py", line 86, in wrapper
+    result, success = func(*args, **kwargs)
+  File "/home/comer/.local/lib/python3.10/site-packages/dbt/cli/requires.py", line 71, in wrapper
+    return func(*args, **kwargs)
+  File "/home/comer/.local/lib/python3.10/site-packages/dbt/cli/requires.py", line 125, in wrapper
+    return func(*args, **kwargs)
+  File "/home/comer/.local/lib/python3.10/site-packages/dbt/cli/requires.py", line 168, in wrapper
+    return func(*args, **kwargs)
+  File "/home/comer/.local/lib/python3.10/site-packages/dbt/cli/main.py", line 437, in deps
+    results = task.run()
+  File "/home/comer/.local/lib/python3.10/site-packages/dbt/task/deps.py", line 57, in run
+    system.make_directory(self.project.packages_install_path)
+  File "/usr/lib/python3.10/functools.py", line 889, in wrapper
+    return dispatch(args[0].__class__)(*args, **kw)
+  File "/home/comer/.local/lib/python3.10/site-packages/dbt/clients/system.py", line 128, in _
+    raise e
+  File "/home/comer/.local/lib/python3.10/site-packages/dbt/clients/system.py", line 122, in _
+    os.makedirs(path)
+  File "/usr/lib/python3.10/os.py", line 225, in makedirs
+    mkdir(name, mode)
+PermissionError: [Errno 13] Permission denied: '/dbt'
+
+[0m13:33:48.650985 [debug] [MainThread]: Command `dbt deps` failed at 13:33:48.650723 after 0.09 seconds
+[0m13:33:48.651406 [debug] [MainThread]: Flushing usage events

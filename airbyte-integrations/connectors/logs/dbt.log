@@ -1,0 +1,14 @@
+[0m13:22:27.378375 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f92c4ac89d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f92c36b2ad0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f92c36b28f0>]}
+
+
+============================== 13:22:27.380868 | 58f027c0-858e-4158-b226-2c1bd7e2098c ==============================
+[0m13:22:27.380868 [info ] [MainThread]: Running with dbt=1.5.0
+[0m13:22:27.381518 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'profiles_dir': '/home/comer/.dbt', 'log_path': 'logs', 'fail_fast': 'False', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'log_format': 'default', 'introspect': 'True', 'target_path': 'None', 'send_anonymous_usage_stats': 'True'}
+[0m13:22:27.382339 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /home/comer/airbyte/airbyte-integrations/connectors/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m13:22:27.383248 [debug] [MainThread]: Command `dbt deps` failed at 13:22:27.383025 after 0.01 seconds
+[0m13:22:27.384148 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f92c4ac89d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f92c36b2ce0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f92c36b2d70>]}
+[0m13:22:27.385501 [debug] [MainThread]: Flushing usage events

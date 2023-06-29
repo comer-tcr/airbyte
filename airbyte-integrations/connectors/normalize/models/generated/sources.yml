@@ -1,0 +1,31 @@
+version: 2
+sources:
+- name: public
+  quoting:
+    database: true
+    schema: false
+    identifier: false
+  tables:
+  - name: _airbyte_raw_activities
+  - name: _airbyte_raw_activity_fields
+  - name: _airbyte_raw_activity_types
+  - name: _airbyte_raw_currencies
+  - name: _airbyte_raw_deal_fields
+  - name: _airbyte_raw_deal_products
+  - name: _airbyte_raw_deals
+  - name: _airbyte_raw_files
+  - name: _airbyte_raw_filters
+  - name: _airbyte_raw_lead_labels
+  - name: _airbyte_raw_leads
+  - name: _airbyte_raw_notes
+  - name: _airbyte_raw_organization_fields
+  - name: _airbyte_raw_organizations
+  - name: _airbyte_raw_permission_sets
+  - name: _airbyte_raw_person_fields
+  - name: _airbyte_raw_persons
+  - name: _airbyte_raw_pipelines
+  - name: _airbyte_raw_product_fields
+  - name: _airbyte_raw_products
+  - name: _airbyte_raw_roles
+  - name: _airbyte_raw_stages
+  - name: _airbyte_raw_users

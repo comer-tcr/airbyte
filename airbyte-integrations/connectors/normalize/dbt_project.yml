@@ -1,0 +1,227 @@
+name: airbyte_utils
+version: '1.0'
+config-version: 2
+profile: normalize
+model-paths:
+- models
+docs-paths:
+- docs
+analysis-paths:
+- analysis
+test-paths:
+- tests
+seed-paths:
+- data
+macro-paths:
+- macros
+target-path: ../build
+log-path: ../logs
+packages-install-path: /dbt
+clean-targets:
+- build
+- dbt_modules
+quoting:
+  database: true
+  schema: false
+  identifier: true
+models:
+  airbyte_utils:
+    +materialized: table
+    generated:
+      airbyte_ctes:
+        +tags: airbyte_internal_cte
+        +materialized: ephemeral
+      airbyte_incremental:
+        +tags: incremental_tables
+        +materialized: incremental
+        +on_schema_change: sync_all_columns
+      airbyte_tables:
+        +tags: normalized_tables
+        +materialized: table
+      airbyte_views:
+        +tags: airbyte_internal_views
+        +materialized: view
+dispatch:
+- macro_namespace: dbt_utils
+  search_order:
+  - airbyte_utils
+  - dbt_utils
+vars:
+  json_column: _airbyte_data
+  models_to_source:
+    activities_ab1: public._airbyte_raw_activities
+    activities_ab2: public._airbyte_raw_activities
+    activities_ab3: public._airbyte_raw_activities
+    activities: public._airbyte_raw_activities
+    activity_fields_ab1: public._airbyte_raw_activity_fields
+    activity_fields_ab2: public._airbyte_raw_activity_fields
+    activity_fields_ab3: public._airbyte_raw_activity_fields
+    activity_fields: public._airbyte_raw_activity_fields
+    activity_types_ab1: public._airbyte_raw_activity_types
+    activity_types_ab2: public._airbyte_raw_activity_types
+    activity_types_ab3: public._airbyte_raw_activity_types
+    activity_types: public._airbyte_raw_activity_types
+    currencies_ab1: public._airbyte_raw_currencies
+    currencies_ab2: public._airbyte_raw_currencies
+    currencies_ab3: public._airbyte_raw_currencies
+    currencies: public._airbyte_raw_currencies
+    deals_ab1: public._airbyte_raw_deals
+    deals_ab2: public._airbyte_raw_deals
+    deals_ab3: public._airbyte_raw_deals
+    deals: public._airbyte_raw_deals
+    deal_products_ab1: public._airbyte_raw_deal_products
+    deal_products_ab2: public._airbyte_raw_deal_products
+    deal_products_ab3: public._airbyte_raw_deal_products
+    deal_products: public._airbyte_raw_deal_products
+    deal_fields_ab1: public._airbyte_raw_deal_fields
+    deal_fields_ab2: public._airbyte_raw_deal_fields
+    deal_fields_ab3: public._airbyte_raw_deal_fields
+    deal_fields: public._airbyte_raw_deal_fields
+    files_ab1: public._airbyte_raw_files
+    files_ab2: public._airbyte_raw_files
+    files_ab3: public._airbyte_raw_files
+    files: public._airbyte_raw_files
+    filters_ab1: public._airbyte_raw_filters
+    filters_ab2: public._airbyte_raw_filters
+    filters_ab3: public._airbyte_raw_filters
+    filters: public._airbyte_raw_filters
+    lead_labels_ab1: public._airbyte_raw_lead_labels
+    lead_labels_ab2: public._airbyte_raw_lead_labels
+    lead_labels_ab3: public._airbyte_raw_lead_labels
+    lead_labels: public._airbyte_raw_lead_labels
+    leads_ab1: public._airbyte_raw_leads
+    leads_ab2: public._airbyte_raw_leads
+    leads_ab3: public._airbyte_raw_leads
+    leads: public._airbyte_raw_leads
+    notes_ab1: public._airbyte_raw_notes
+    notes_ab2: public._airbyte_raw_notes
+    notes_ab3: public._airbyte_raw_notes
+    notes: public._airbyte_raw_notes
+    organizations_ab1: public._airbyte_raw_organizations
+    organizations_ab2: public._airbyte_raw_organizations
+    organizations_ab3: public._airbyte_raw_organizations
+    organizations: public._airbyte_raw_organizations
+    organization_fields_ab1: public._airbyte_raw_organization_fields
+    organization_fields_ab2: public._airbyte_raw_organization_fields
+    organization_fields_ab3: public._airbyte_raw_organization_fields
+    organization_fields: public._airbyte_raw_organization_fields
+    permission_sets_ab1: public._airbyte_raw_permission_sets
+    permission_sets_ab2: public._airbyte_raw_permission_sets
+    permission_sets_ab3: public._airbyte_raw_permission_sets
+    permission_sets: public._airbyte_raw_permission_sets
+    persons_ab1: public._airbyte_raw_persons
+    persons_ab2: public._airbyte_raw_persons
+    persons_ab3: public._airbyte_raw_persons
+    persons: public._airbyte_raw_persons
+    person_fields_ab1: public._airbyte_raw_person_fields
+    person_fields_ab2: public._airbyte_raw_person_fields
+    person_fields_ab3: public._airbyte_raw_person_fields
+    person_fields: public._airbyte_raw_person_fields
+    pipelines_ab1: public._airbyte_raw_pipelines
+    pipelines_ab2: public._airbyte_raw_pipelines
+    pipelines_ab3: public._airbyte_raw_pipelines
+    pipelines: public._airbyte_raw_pipelines
+    product_fields_ab1: public._airbyte_raw_product_fields
+    product_fields_ab2: public._airbyte_raw_product_fields
+    product_fields_ab3: public._airbyte_raw_product_fields
+    product_fields: public._airbyte_raw_product_fields
+    products_ab1: public._airbyte_raw_products
+    products_ab2: public._airbyte_raw_products
+    products_ab3: public._airbyte_raw_products
+    products: public._airbyte_raw_products
+    roles_ab1: public._airbyte_raw_roles
+    roles_ab2: public._airbyte_raw_roles
+    roles_ab3: public._airbyte_raw_roles
+    roles: public._airbyte_raw_roles
+    stages_ab1: public._airbyte_raw_stages
+    stages_ab2: public._airbyte_raw_stages
+    stages_ab3: public._airbyte_raw_stages
+    stages: public._airbyte_raw_stages
+    users_ab1: public._airbyte_raw_users
+    users_ab2: public._airbyte_raw_users
+    users_ab3: public._airbyte_raw_users
+    users: public._airbyte_raw_users
+    activities_attendees_ab1: public._airbyte_raw_activities
+    activities_attendees_ab2: public._airbyte_raw_activities
+    activities_attendees_ab3: public._airbyte_raw_activities
+    activities_attendees: public._airbyte_raw_activities
+    activities_file_ab1: public._airbyte_raw_activities
+    activities_file_ab2: public._airbyte_raw_activities
+    activities_file_ab3: public._airbyte_raw_activities
+    activities_file: public._airbyte_raw_activities
+    activities_participants_ab1: public._airbyte_raw_activities
+    activities_participants_ab2: public._airbyte_raw_activities
+    activities_participants_ab3: public._airbyte_raw_activities
+    activities_participants: public._airbyte_raw_activities
+    activity_fields_options_ab1: public._airbyte_raw_activity_fields
+    activity_fields_options_ab2: public._airbyte_raw_activity_fields
+    activity_fields_options_ab3: public._airbyte_raw_activity_fields
+    activity_fields_options: public._airbyte_raw_activity_fields
+    deal_fields_options_ab1: public._airbyte_raw_deal_fields
+    deal_fields_options_ab2: public._airbyte_raw_deal_fields
+    deal_fields_options_ab3: public._airbyte_raw_deal_fields
+    deal_fields_options: public._airbyte_raw_deal_fields
+    leads_value_ab1: public._airbyte_raw_leads
+    leads_value_ab2: public._airbyte_raw_leads
+    leads_value_ab3: public._airbyte_raw_leads
+    leads_value: public._airbyte_raw_leads
+    notes_deal_ab1: public._airbyte_raw_notes
+    notes_deal_ab2: public._airbyte_raw_notes
+    notes_deal_ab3: public._airbyte_raw_notes
+    notes_deal: public._airbyte_raw_notes
+    notes_person_ab1: public._airbyte_raw_notes
+    notes_person_ab2: public._airbyte_raw_notes
+    notes_person_ab3: public._airbyte_raw_notes
+    notes_person: public._airbyte_raw_notes
+    notes_organization_ab1: public._airbyte_raw_notes
+    notes_organization_ab2: public._airbyte_raw_notes
+    notes_organization_ab3: public._airbyte_raw_notes
+    notes_organization: public._airbyte_raw_notes
+    notes_user_ab1: public._airbyte_raw_notes
+    notes_user_ab2: public._airbyte_raw_notes
+    notes_user_ab3: public._airbyte_raw_notes
+    notes_user: public._airbyte_raw_notes
+    organizations_owner_id_ab1: public._airbyte_raw_organizations
+    organizations_owner_id_ab2: public._airbyte_raw_organizations
+    organizations_owner_id_ab3: public._airbyte_raw_organizations
+    organizations_owner_id: public._airbyte_raw_organizations
+    organizations_picture_id_ab1: public._airbyte_raw_organizations
+    organizations_picture_id_ab2: public._airbyte_raw_organizations
+    organizations_picture_id_ab3: public._airbyte_raw_organizations
+    organizations_picture_id: public._airbyte_raw_organizations
+    organization_fields_options_ab1: public._airbyte_raw_organization_fields
+    organization_fields_options_ab2: public._airbyte_raw_organization_fields
+    organization_fields_options_ab3: public._airbyte_raw_organization_fields
+    organization_fields_options: public._airbyte_raw_organization_fields
+    persons_picture_id_ab1: public._airbyte_raw_persons
+    persons_picture_id_ab2: public._airbyte_raw_persons
+    persons_picture_id_ab3: public._airbyte_raw_persons
+    persons_picture_id: public._airbyte_raw_persons
+    persons_email_ab1: public._airbyte_raw_persons
+    persons_email_ab2: public._airbyte_raw_persons
+    persons_email_ab3: public._airbyte_raw_persons
+    persons_email: public._airbyte_raw_persons
+    persons_phone_ab1: public._airbyte_raw_persons
+    persons_phone_ab2: public._airbyte_raw_persons
+    persons_phone_ab3: public._airbyte_raw_persons
+    persons_phone: public._airbyte_raw_persons
+    person_fields_options_ab1: public._airbyte_raw_person_fields
+    person_fields_options_ab2: public._airbyte_raw_person_fields
+    person_fields_options_ab3: public._airbyte_raw_person_fields
+    person_fields_options: public._airbyte_raw_person_fields
+    product_fields_options_ab1: public._airbyte_raw_product_fields
+    product_fields_options_ab2: public._airbyte_raw_product_fields
+    product_fields_options_ab3: public._airbyte_raw_product_fields
+    product_fields_options: public._airbyte_raw_product_fields
+    products_prices_ab1: public._airbyte_raw_products
+    products_prices_ab2: public._airbyte_raw_products
+    products_prices_ab3: public._airbyte_raw_products
+    products_prices: public._airbyte_raw_products
+    organizations_picture_id_pictures_ab1: public._airbyte_raw_organizations
+    organizations_picture_id_pictures_ab2: public._airbyte_raw_organizations
+    organizations_picture_id_pictures_ab3: public._airbyte_raw_organizations
+    organizations_picture_id_pictures: public._airbyte_raw_organizations
+    persons_picture_id_pictures_ab1: public._airbyte_raw_persons
+    persons_picture_id_pictures_ab2: public._airbyte_raw_persons
+    persons_picture_id_pictures_ab3: public._airbyte_raw_persons
+    persons_picture_id_pictures: public._airbyte_raw_persons
