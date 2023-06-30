@@ -18,7 +18,7 @@
       "type": ["null", "string"]
     },
     "json_column_flag": {
-      "type": ["null", "boolean"]
+      "type": ["null", "string"]
     },
     "add_time": {
       "type": ["null", "string"]
@@ -30,28 +30,28 @@
       "type": ["null", "integer"]
     },
     "edit_flag": {
-      "type": ["null", "boolean"]
+      "type": ["null", "string"]
     },
     "details_visible_flag": {
-      "type": ["null", "boolean"]
+      "type": ["null", "string"]
     },
     "add_visible_flag": {
-      "type": ["null", "boolean"]
+      "type": ["null", "string"]
     },
     "important_flag": {
-      "type": ["null", "boolean"]
+      "type": ["null", "string"]
     },
     "bulk_edit_allowed": {
-      "type": ["null", "boolean"]
+      "type": ["null", "string"]
     },
     "filtering_allowed": {
-      "type": ["null", "boolean"]
+      "type": ["null", "string"]
     },
     "sortable_flag": {
-      "type": ["null", "boolean"]
+      "type": ["null", "string"]
     },
     "mandatory_flag": {
-      "type": ["null", "boolean"]
+      "type": ["null", "string"]
     },
     "link": {
       "type": ["null", "string"]
@@ -60,13 +60,13 @@
       "type": ["null", "string"]
     },
     "active_flag": {
-      "type": ["null", "boolean"]
+      "type": ["null", "string"]
     },
     "index_visible_flag": {
-      "type": ["null", "boolean"]
+      "type": ["null", "string"]
     },
     "searchable_flag": {
-      "type": ["null", "boolean"]
+      "type": ["null", "string"]
     },
     "options": {
       "type": ["null", "array"],
@@ -74,7 +74,7 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": ["null", "boolean", "integer"]
+            "type": ["null", "string", "integer"]
           },
           "label": {
             "type": ["null", "string"]
