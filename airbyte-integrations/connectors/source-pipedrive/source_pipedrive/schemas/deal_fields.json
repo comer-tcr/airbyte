@@ -3,7 +3,7 @@
   "type": "object",
   "properties": {
     "id": {
-      "type": ["null", "integer"]
+      "type": ["null", "string"]
     },
     "key": {
       "type": ["null", "string"]
@@ -55,8 +55,8 @@
     "filtering_allowed": {
       "type": ["null", "boolean"]
     },
-    "sortable_flag": {
-      "type": ["null", "boolean"]
+    "deal_id": {
+      "type": ["null", "integer"]
     },
     "options": {
       "type": ["null", "array"],
